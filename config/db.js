@@ -99,6 +99,28 @@ export const userRoom = sequelize.define('user_room', {
 }, {
     timestamps: false
 })
+export const Contacts = sequelize.define('contacts', {
+    id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
+    },
+    contact_of: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
+    contact_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
+    username: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    }
+
+}, {
+    timestamps: false
+})
 
 export const message = sequelize.define('message', {
     id: {
@@ -110,24 +132,27 @@ export const message = sequelize.define('message', {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
-    room_id: {
+    to: {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
-    message: {
+    content: {
         type: DataTypes.TEXT,
         allowNull: false,
     },
     date: {
         type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW,
         allowNull: false,
     },
     type_id: {
         type: DataTypes.INTEGER,
+        defaultValue: 1,
         allowNull: false,
     },
     url: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        allowNull: true,
     }
 
 }, {
